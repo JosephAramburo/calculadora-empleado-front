@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-employer.component.scss']
 })
 export class FormEmployerComponent implements OnInit {
+  title: string = 'Nuevo Empleado';
 
   constructor() { }
 

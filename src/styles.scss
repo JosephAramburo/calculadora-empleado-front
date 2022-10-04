@@ -10,6 +10,25 @@
 }
 
 
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url(assets/fonts/Poppins/Poppins-Medium.ttf) format("opentype");
+}
+
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url(assets/fonts/Poppins/Poppins-Light.ttf) format("opentype");
+}
+
+
 body{
     font-family: 'Poppins-Regular';
+}
+
+.font-medium{
+    font-family: 'Poppins-Medium';
+}
+
+.font-light{
+    font-family: 'Poppins-Light';
 }
