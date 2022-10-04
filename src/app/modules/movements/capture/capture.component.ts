@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./capture.component.scss']
 })
 export class CaptureComponent implements OnInit {
-
+  title : string = 'Nuevo Movimiento';
   constructor() { }
 
   ngOnInit(): void {
