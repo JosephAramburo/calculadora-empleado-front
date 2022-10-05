@@ -22,6 +22,30 @@
                                 <th>Acción</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr *ngFor="let item of data">
+                                <td>{{item.id}}</td>
+                                <td>{{item.name}} {{item.lastName}}</td>
+                                <td>{{item?.role?.name}}</td>
+                                <td>{{item?.typeEmployer?.name}}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary m-1" title="Editar registro"><i class="bi bi-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger" title="Borrar registro"><i class="bi bi-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td [attr.colspan]="'4'" class="font-family-Poppins-Light">
+                                    <ngb-pagination [collectionSize]="totalRows" [(page)]="filters.currentPage" [pageSize]="filters.limit" (pageChange)="getData()" [maxSize]="5"></ngb-pagination>
+                                </td>
+                                <td>
+                                    <select class="form-control form-control-sm font-family-Poppins-Light" [(ngModel)]="filters.limit" (change)="getData()" style="    max-width: 100px;">
+                                        <option *ngFor="let option of dataForPage" [value]="option">{{option}}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

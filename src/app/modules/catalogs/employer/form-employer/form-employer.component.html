@@ -5,30 +5,38 @@
     </div>
     <br>
     <div class="col-12">
-        <form autocomplete="off">
+        <form [formGroup]="frmEmployer" autocomplete="off">
             <div class="row mt-4">
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="col-6">
                         <label for="id" class="form-label font-medium">Num. Empleado:</label>
-                        <input type="text" class="form-control font-medium" id="id">
+                        <input type="text" class="form-control font-medium" id="id" formControlName="id">
                     </div>
                     <div class="mt-2">
                         <label for="roleId" class="form-label font-medium">Rol:</label>
                         <!--  [ngClass]="inputValidation(frmEmployer,'companyId')" (change)="selectedCompany()" -->
-                        <select class="form-control font-medium col-12 col-md-2" id="roleId">
-                            <!-- <option *ngFor="let item of listCompanies" [value]="item.id">{{item.name}}</option> -->
+                        <select class="form-control font-light col-12 col-md-2" id="roleId" formControlName="roleId" [ngClass]="inputValidation(frmEmployer,'roleId')">
+                            <option *ngFor="let item of listRoles" [value]="item.id">{{item.name}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="col-12">
-                        <label for="name" class="form-label font-medium">Nombre:</label>
-                        <input type="text" class="form-control font-medium" id="name">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <label for="name" class="form-label font-medium">Nombre:</label>
+                                <input type="text" class="form-control font-light" id="name" formControlName="name" autofocus [ngClass]="inputValidation(frmEmployer,'name')">    
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <label for="lastName" class="form-label font-medium">Apellidos:</label>
+                                <input type="text" class="form-control font-light" id="lastName"  formControlName="lastName" [ngClass]="inputValidation(frmEmployer,'lastName')">
+                            </div>
+                        </div>
                     </div>
                     <div class="mt-2">
-                        <label for="typeId" class="form-label font-medium">Tipo:</label>
-                        <select class="form-control font-medium col-12 col-md-2" id="typeId" >
-                            <!-- <option *ngFor="let item of listCompanies" [value]="item.id">{{item.name}}</option> -->
+                        <label for="typeEmployerId" class="form-label font-medium">Tipo:</label>
+                        <select class="form-control font-light col-12 col-md-2" id="typeEmployerId" formControlName="typeEmployerId" [ngClass]="inputValidation(frmEmployer,'typeEmployerId')">
+                            <option *ngFor="let item of listTypeEmp" [value]="item.id">{{item.name}}</option>
                         </select>
                     </div>
                 </div>
@@ -38,7 +46,7 @@
     <div class="row mt-5  justify-content-end">
         <div class="col-lg-4 col-md-4 col-sm-12 col-12">
             <button class="btn btn-danger font-light" [routerLink]="['/catalogs/employer']"><i class="bi bi-x-circle"></i> Cancelar</button>
-            <button class="btn btn-success m-2 font-light"><i class="bi bi-save"></i> Guardar</button>
+            <button class="btn btn-success m-2 font-light" (click)="save()"><i class="bi bi-save"></i> Guardar</button>
         </div>
     </div>
 </div>
