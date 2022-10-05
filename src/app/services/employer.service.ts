@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ApiRestClass } from '@class/api-rest-class';
 import { environment } from '@env/environment';
 import { ApiRestInterface, FilterInterface } from '@interfaces/api-rest-interface';
-import { EmployerInterface, EmployerPaginatedInterface } from '@interfaces/employer-interface';
+import { EmployerInterface, EmployerPaginatedInterface, EmployerRowInterface } from '@interfaces/employer-interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -20,6 +20,14 @@ export class EmployerService extends ApiRestClass implements ApiRestInterface<Em
 
   get(): Observable<EmployerInterface[]> {
     return this._httpClient.get<EmployerInterface[]>(this.url);
+  }
+
+  autocomplete(filter:string):Observable<EmployerInterface[]>{
+    return this._httpClient.get<EmployerInterface[]>(`${this.url}/autocomplete`, { params: this.getParams({filter: filter}) })
+  }
+
+  getDetailById(id: number): Observable<EmployerRowInterface> {
+    return this._httpClient.get<EmployerRowInterface>(`${this.url}/${id}/detail`);
   }
 
   paginated(filter: FilterInterface): Observable<EmployerPaginatedInterface> {
