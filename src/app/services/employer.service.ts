@@ -27,7 +27,7 @@ export class EmployerService extends ApiRestClass implements ApiRestInterface<Em
   }
 
   getById(id: number): Observable<EmployerInterface> {
-    throw new Error('Method not implemented.');
+    return this._httpClient.get<EmployerInterface>(`${this.url}/${id}`);
   }
 
   post(params: EmployerInterface): Observable<EmployerInterface> {
@@ -35,10 +35,10 @@ export class EmployerService extends ApiRestClass implements ApiRestInterface<Em
   }
 
   put(params: EmployerInterface): Observable<EmployerInterface> {
-    throw new Error('Method not implemented.');
+    return this._httpClient.put<EmployerInterface>(`${this.url}/${params.id}`, params);
   }
 
   delete(id: number): Observable<EmployerInterface> {
-    throw new Error('Method not implemented.');
+    return this._httpClient.delete<EmployerInterface>(`${this.url}/${id}`);
   }  
 }

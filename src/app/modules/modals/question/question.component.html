@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+  </div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-12">{{question}}</div>
+    </div>
+</div>
+<div class="modal-footer font-family-Poppins-Light">
+    <button type="button" class="btn btn-light bg-gray" (click)="activeModal.dismiss()">Calcelar</button>
+    <button type="button" class="btn btn-primary" (click)="ok()">Aceptar</button>
+</div>

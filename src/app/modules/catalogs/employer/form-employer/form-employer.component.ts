@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsClass } from '@class/forms-class';
 import { EmployerInterface } from '@interfaces/employer-interface';
 import { RoleInterface } from '@interfaces/role-interface';
@@ -19,26 +20,50 @@ export class FormEmployerComponent extends FormsClass implements OnInit {
   title       : string                  = 'Nuevo Empleado';
   listRoles   : RoleInterface[]         = [];
   listTypeEmp : TypeEmployerInterface[] = [];
+  id          : number                  = 0;
   frmEmployer : FormGroup               = new FormGroup({
-    id              : new FormControl({value: '', disabled: true}),
+    id              : new FormControl({value: 0, disabled: true}),
     name            : new FormControl('', [Validators.required]),
     lastName        : new FormControl('', [Validators.required]),
     roleId          : new FormControl('', [Validators.required]),
-    typeEmployerId  : new FormControl('', [Validators.required])
+    typeEmployerId  : new FormControl('', [Validators.required]),
+    status          : new FormControl('1')
   });
 
   constructor(
     private _roleService          : RoleService,
     private _typeEmployerService  : TypeEmployerService,
     private _employerService      : EmployerService,
-    private _toast                : ToastrService
+    private _toast                : ToastrService,
+    private _router               : Router,
+    private _route                : ActivatedRoute
   ) { 
     super();
   }
 
   ngOnInit(): void {
+    this.id = this._route.snapshot.params['id'] || 0;
+
+    if(this.id != 0){
+      this.title = 'Editar Empleado';
+      this.getEmployerById();
+    }
+
     this.getRoles();
     this.getTypesEmployers();
+  }
+
+  getEmployerById():void{
+    this._employerService.getById(this.id).subscribe({
+      next: res => {
+        delete res.createdAt;
+        delete res.updatedAt;
+        this.frmEmployer.setValue(res);
+      },
+      error: (err:HttpErrorResponse) => {
+
+      }
+    });
   }
 
   getRoles():void{
@@ -71,9 +96,10 @@ export class FormEmployerComponent extends FormsClass implements OnInit {
 
     let params = this.frmEmployer.getRawValue() as EmployerInterface;
 
-    this._employerService.post(params).subscribe({
+    this._employerService[this.id != 0 ? 'put' : 'post'](params).subscribe({
       next: res => {
-        this._toast.success('Empleado creado correctamente');
+        this._toast.success(`Empleado ${this.id != 0 ? 'actualizado' : 'creado'} correctamente`);
+        this._router.navigate(['/catalogs/employer']);
       },
       error: (err:HttpErrorResponse) => {
         this._toast.error(this.messageError(err));

@@ -12,31 +12,33 @@
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
-                    <table class="table table-stripped">
+                    <table class="table table-sm table-stripped">
                         <thead>
                             <tr>
                                 <th>Num. Empleado</th>
                                 <th>Nombre</th>
                                 <th>Rol</th>
                                 <th>Tipo</th>
+                                <th>Estatus</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="font-light">
                             <tr *ngFor="let item of data">
                                 <td>{{item.id}}</td>
                                 <td>{{item.name}} {{item.lastName}}</td>
                                 <td>{{item?.role?.name}}</td>
                                 <td>{{item?.typeEmployer?.name}}</td>
+                                <td><span class="badge" [ngClass]="{'text-bg-success': item.status == '1', 'text-bg-danger': item.status == '0'}">{{item.status == '1' ? 'ACTIVO' : 'INACTIVO'}}</span></td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary m-1" title="Editar registro"><i class="bi bi-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger" title="Borrar registro"><i class="bi bi-trash"></i></button>
+                                    <a class="btn btn-sm btn-primary m-1" title="Editar registro" [routerLink]="[item.id]"><i class="bi bi-pencil"></i></a>
+                                    <button class="btn btn-sm btn-danger" title="Inactivar registro" (click)="openModalDelete(item.id)"><i class="bi bi-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
-                        <tfoot>
+                        <tfoot class="font-light">
                             <tr>
-                                <td [attr.colspan]="'4'" class="font-family-Poppins-Light">
+                                <td [attr.colspan]="'5'" class="font-family-Poppins-Light">
                                     <ngb-pagination [collectionSize]="totalRows" [(page)]="filters.currentPage" [pageSize]="filters.limit" (pageChange)="getData()" [maxSize]="5"></ngb-pagination>
                                 </td>
                                 <td>

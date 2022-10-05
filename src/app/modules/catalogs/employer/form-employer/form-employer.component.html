@@ -14,9 +14,15 @@
                     </div>
                     <div class="mt-2">
                         <label for="roleId" class="form-label font-medium">Rol:</label>
-                        <!--  [ngClass]="inputValidation(frmEmployer,'companyId')" (change)="selectedCompany()" -->
                         <select class="form-control font-light col-12 col-md-2" id="roleId" formControlName="roleId" [ngClass]="inputValidation(frmEmployer,'roleId')">
                             <option *ngFor="let item of listRoles" [value]="item.id">{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div class="mt-2" *ngIf="id != 0">
+                        <label for="status" class="form-label font-medium">Estatus:</label>
+                        <select class="form-control font-light col-12 col-md-2" id="status" formControlName="status" [ngClass]="inputValidation(frmEmployer,'status')">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
                         </select>
                     </div>
                 </div>

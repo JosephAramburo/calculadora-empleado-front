@@ -20,5 +20,7 @@ export interface EmployerInterface {
     lastName            : string;
     roleId              : string;
     typeEmployerId      : string;
-    status              : string;
+    status              ?: string;
+    createdAt           ?: string;
+    updatedAt           ?: string;
 }
