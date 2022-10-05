@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MovementsRoutingModule } from './movements-routing.module';
 import { CaptureComponent } from './capture/capture.component';
 import { ListMovementsComponent } from './list-movements/list-movements.component';
-import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -18,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     NgbTypeaheadModule,
-    MovementsRoutingModule
+    MovementsRoutingModule,
+    NgbPaginationModule
   ]
 })
 export class MovementsModule { }

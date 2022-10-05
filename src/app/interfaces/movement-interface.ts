@@ -14,5 +14,6 @@ export interface MovementInterface {
     dateMovement        : string;
     quantityDeliveries  : number;
     coverShifts         : boolean | string;
-    quantityDaysShifts  : number;
+    daysCovered         ?: number;
+    roleCoveredId       ?: number;
 }

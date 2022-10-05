@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from "@angular/common/http";
-import { FormGroup } from "@angular/forms";
+import { FormGroup, ValidatorFn } from "@angular/forms";
 
 export class FormsClass {
     constructor(){}
@@ -11,6 +11,20 @@ export class FormsClass {
     setEmptyByControls(frm: FormGroup, arrStr: string[]):void{
         arrStr.forEach(x => {
           frm.get(x)?.patchValue('');
+        });
+    }
+
+    setValidatorsByControls(frm: FormGroup, arrStr: string[], validators : ValidatorFn[]):void{
+        arrStr.forEach(x => {
+            frm.get(x)?.setValidators(validators);
+            frm.get(x)?.updateValueAndValidity();
+        });
+    }
+
+    clearValidatorsByControls(frm: FormGroup, arrStr: string[]):void{
+        arrStr.forEach(x => {
+            frm.get(x)?.clearValidators();
+            frm.get(x)?.updateValueAndValidity();
         });
     }
 

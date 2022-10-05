@@ -23,11 +23,11 @@ export class MovementService extends ApiRestClass implements ApiRestInterface<Mo
   }
 
   paginated(filter: FilterInterface): Observable<MovementPaginatedInterface> {
-    throw new Error('Method not implemented.');
+    return this._httpClient.get<MovementPaginatedInterface>(`${this.url}/paginated`, { params: this.getParams(filter) });
   }
 
   getById(id: number): Observable<MovementInterface> {
-    throw new Error('Method not implemented.');
+    return this._httpClient.get<MovementInterface>(`${this.url}/${id}`);
   }
 
   post(params: MovementInterface): Observable<MovementInterface> {
@@ -35,7 +35,7 @@ export class MovementService extends ApiRestClass implements ApiRestInterface<Mo
   }
 
   put(params: MovementInterface): Observable<MovementInterface> {
-    throw new Error('Method not implemented.');
+    return this._httpClient.put<MovementInterface>(`${this.url}/${params.id}`, params);
   }
 
   delete(id: number): Observable<MovementInterface> {

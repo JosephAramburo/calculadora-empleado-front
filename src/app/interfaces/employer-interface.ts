@@ -6,6 +6,7 @@ export interface EmployerPaginatedInterface {
 export interface DefaultInterface{
     id      ?: number;
     name    : string;
+    lastName?:string;
 }
 
 export interface EmployerRowInterface extends EmployerInterface{

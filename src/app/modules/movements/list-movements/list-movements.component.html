@@ -21,6 +21,30 @@
                                 <th>Acción</th>
                             </tr>
                         </thead>
+                        <tbody class="font-light">
+                            <tr *ngFor="let item of data">
+                                <td>{{item.id}}</td>
+                                <td>{{item?.employer?.name}} {{item?.employer?.lastName}}</td>
+                                <td>{{item?.dateMovement}}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary m-1" title="Editar registro" [routerLink]="[item?.id]"><i class="bi bi-pencil"></i></a>
+                                    <button class="btn btn-sm btn-secondary m-1" title="Ver recibo"><i class="bi bi-clipboard-data"></i></button>
+                                    <button class="btn btn-sm btn-danger" title="Inactivar registro" (click)="openModalDelete(item?.id)"><i class="bi bi-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="font-light">
+                            <tr>
+                                <td [attr.colspan]="'5'" class="font-family-Poppins-Light">
+                                    <ngb-pagination [collectionSize]="totalRows" [(page)]="filters.currentPage" [pageSize]="filters.limit" (pageChange)="getData()" [maxSize]="5"></ngb-pagination>
+                                </td>
+                                <td>
+                                    <select class="form-control form-control-sm font-family-Poppins-Light" [(ngModel)]="filters.limit" (change)="getData()" style="    max-width: 100px;">
+                                        <option *ngFor="let option of dataForPage" [value]="option">{{option}}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
