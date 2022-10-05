@@ -22,7 +22,7 @@ export class FormEmployerComponent extends FormsClass implements OnInit {
   listTypeEmp : TypeEmployerInterface[] = [];
   id          : number                  = 0;
   frmEmployer : FormGroup               = new FormGroup({
-    id              : new FormControl({value: 0, disabled: true}),
+    id              : new FormControl({value: '', disabled: true}),
     name            : new FormControl('', [Validators.required]),
     lastName        : new FormControl('', [Validators.required]),
     roleId          : new FormControl('', [Validators.required]),
@@ -95,6 +95,9 @@ export class FormEmployerComponent extends FormsClass implements OnInit {
     }
 
     let params = this.frmEmployer.getRawValue() as EmployerInterface;
+
+    if(this.id == 0)
+      delete params.id;
 
     this._employerService[this.id != 0 ? 'put' : 'post'](params).subscribe({
       next: res => {

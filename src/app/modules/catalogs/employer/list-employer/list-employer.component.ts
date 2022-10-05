@@ -37,7 +37,10 @@ export class ListEmployerComponent implements OnInit {
     }});
   }
 
-  openModalDelete(idEmp : number):void{
+  openModalDelete(idEmp : number | undefined):void{
+    if(idEmp == undefined)
+      return;
+
     let modal : NgbModalRef       = this._modalService.open(QuestionComponent, { centered: true });
     modal.componentInstance.title = 'Empleados';
 

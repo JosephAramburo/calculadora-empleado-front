@@ -15,7 +15,7 @@ export interface EmployerRowInterface extends EmployerInterface{
 
 
 export interface EmployerInterface {
-    id                  : number;
+    id                  ?: number;
     name                : string;
     lastName            : string;
     roleId              : string;
