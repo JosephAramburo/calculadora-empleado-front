@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h4 class="modal-title">Recibo de Nómina</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+  </div>
+<div class="modal-body">
+    <div class="row">
+        <p class="font-light">Empleado : <span class="font-medium">{{data?.employer?.name}} {{data?.employer?.lastName}}</span></p>
+        <p class="font-light">Fecha del recibo de nómina : <span class="font-medium">{{data.dateMovement}}</span></p>
+        <p class="font-light">Total percepciones : <span class="font-medium">{{getTotalPerceptions() | currency}}</span></p>
+        <p class="font-light">Total deducciones : <span class="font-medium">{{getDeducciones | currency}}</span></p>
+        <p class="font-light">Total : <span class="font-medium">{{data.total | currency}}</span></p>
+    </div>
+</div>
+<div class="modal-footer font-family-Poppins-Light">
+    <button type="button" class="btn btn-light bg-gray" (click)="activeModal.dismiss()">Cerrar</button>
+</div>

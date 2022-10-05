@@ -1,10 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FilterInterface } from '@interfaces/api-rest-interface';
-import { MovementRowInterface } from '@interfaces/movement-interface';
+import { MovementInterface, MovementRowInterface } from '@interfaces/movement-interface';
 import { QuestionComponent } from '@modules/modals/question/question.component';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { MovementService } from '@services/movement.service';
+import { ReceiptModalComponent } from '../modals/receipt-modal/receipt-modal.component';
 
 @Component({
   selector: 'app-list-movements',
@@ -54,6 +55,13 @@ export class ListMovementsComponent implements OnInit {
     }).catch(err => {
 
     });
+  }
+
+  openModalReceipt(mov : MovementRowInterface):void{
+    let modal : NgbModalRef       = this._modalService.open(ReceiptModalComponent, { centered: true });
+    modal.componentInstance.data  = mov;
+
+    modal.result.then(res => { }).catch(err => { });
   }
 
 }

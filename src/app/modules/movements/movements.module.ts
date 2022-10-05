@@ -6,12 +6,14 @@ import { CaptureComponent } from './capture/capture.component';
 import { ListMovementsComponent } from './list-movements/list-movements.component';
 import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReceiptModalComponent } from './modals/receipt-modal/receipt-modal.component';
 
 
 @NgModule({
   declarations: [
     CaptureComponent,
-    ListMovementsComponent
+    ListMovementsComponent,
+    ReceiptModalComponent
   ],
   imports: [
     CommonModule,
